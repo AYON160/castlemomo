@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero" data-aos="up">
+  <div>
+    <span class="eyebrow">Menu Items</span>
+    <h1>Browse our featured items.</h1>
+    <p>Three product cards show the item image, name, and price. Click any item to open the detail view.</p>
+  </div>
+  <div class="hero-visual" data-aos="left" style="--aos-delay: 120ms;">
+    <img src="{{ hero_image }}" alt="Featured menu item">
+  </div>
+</section>
+
+<section>
+  <div class="section-head" data-aos="up">
+    <div>
+      <h2>Available items</h2>
+      <p class="meta">Each card uses the shared placeholder image and links to its own item page.</p>
+    </div>
+  </div>
+  <div class="grid items-grid">
+    {% for item in items %}
+    <article class="shop-card" data-aos="up" style="--aos-delay: {{ loop.index0 * 80 }}ms;">
+      <img src="{{ hero_image }}" alt="{{ item.name }}">
+      <div class="card-body">
+        <h3>{{ item.name }}</h3>
+        <p class="meta">{{ item.price }}</p>
+        <div class="button-row card-actions">
+          <a class="button primary" href="{{ url_for('item_detail', item_id=item.id) }}">View item</a>
+          <a class="button secondary" href="#">Add to cart</a>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

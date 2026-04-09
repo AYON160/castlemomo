@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+{%block content%}
+
+<section id="shop-grid">
+  <div class="section-head" data-aos="up">
+    <div>
+      <h2>All Shops</h2>
+      <p class="meta">Grid view with image, counter, location, and quick access to each shop detail page.</p>
+    </div>
+  </div>
+  <div class="grid shop-grid">
+    {% for shop in shops %}
+    <article class="shop-card" data-aos="up" style="--aos-delay: {{ loop.index0 * 80 }}ms;">
+      <img src="{{ hero_image }}" alt="{{ shop.name }}">
+      <div class="card-body">
+        <h3>{{ shop.name }}</h3>
+        <p class="meta">{{ shop.tagline }}</p>
+        <div class="card-meta">
+          <span class="pill">{{ shop.counter }}</span>
+          <span class="pill">{{ shop.location }}</span>
+        </div>
+        <div class="button-row card-actions">
+          <a class="button primary" href="{{ url_for('shop_detail', shop_id=shop.id) }}">View Details</a>
+          <a class="button secondary" href="#">Add to cart</a>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{%endblock%}

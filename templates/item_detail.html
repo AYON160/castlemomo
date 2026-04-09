@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero" data-aos="up">
+  <div>
+    <span class="eyebrow">Item detail</span>
+    <h1>{{ item.name }}</h1>
+    <p>{{ item.description }}</p>
+    <div class="card-meta">
+      <span class="pill">{{ item.price }}</span>
+      <span class="pill">Fresh ingredients</span>
+    </div>
+  </div>
+  <div class="hero-visual" data-aos="left" style="--aos-delay: 120ms;">
+    <img src="{{ hero_image }}" alt="{{ item.name }}">
+  </div>
+</section>
+
+<section class="split">
+  <article class="panel" data-aos="right">
+    <span class="eyebrow">Description</span>
+    <h2>About this item</h2>
+    <p class="section-copy">{{ item.more }}</p>
+  </article>
+  <article class="panel" data-aos="left" style="--aos-delay: 80ms;">
+    <span class="eyebrow">More details</span>
+    <h2>Ready to order</h2>
+    <p class="section-copy">This dish is presented with a consistent flavor profile and built for quick pickup or delivery.</p>
+    <a class="button secondary" href="{{ url_for('items') }}">Back to items</a>
+  </article>
+</section>
+{% endblock %}

@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+{%block content%}
+<section class="section-head" data-aos="up">
+  <div>
+    <span class="eyebrow">Customer Reviews</span>
+    <h2>What guests are saying</h2>
+    <p class="meta">Every review includes the related shop and a star rating.</p>
+  </div>
+</section>
+
+<section class="grid reviews-grid">
+  {% for review in reviews %}
+  <article class="review-card" data-aos="up" style="--aos-delay: {{ loop.index0 * 70 }}ms;">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="pill">{{ shop_lookup[review.shop_id].name }}</span>
+        <span class="pill">{{ shop_lookup[review.shop_id].location }}</span>
+      </div>
+      <h3>{{ review.author }}</h3>
+      <p class="rating">{{ render_stars(review.stars) }}</p>
+      <p class="meta">{{ review.text }}</p>
+      <a class="button secondary" href="{{ url_for('shop_detail', shop_id=review.shop_id) }}">Open Shop</a>
+    </div>
+  </article>
+  {% endfor %}
+</section>
+{%endblock%}

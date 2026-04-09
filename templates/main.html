@@ -1,0 +1,117 @@
+{%extends 'base.html'%}
+{%block content%}
+<section class="hero" data-aos="up">
+  <div class="hero-content">
+    <span class="eyebrow">Fresh food, fast service, bright spaces</span>
+    <h1>"Curated Flavors for the Modern Food Lover."</h1>
+    <p>
+      Indulge in carefully crafted flavors, made from the finest ingredients to deliver an unforgettable food experience
+    with CASTLE MOMO.</p>
+    <div class="button-row">
+      <a class="button primary" href="#shop-grid">Explore Shops</a>
+      <a class="button secondary" href="{{ url_for('reviews') }}">See Reviews</a>
+    </div>
+  </div>
+</section>
+
+<section class="split">
+  <article class="panel" data-aos="right">
+    <span class="eyebrow">Featured Shop</span>
+    <h2>{{ hero_shop.name }}</h2>
+    <p class="section-copy">{{ hero_shop.about }}</p>
+    <div class="card-meta">
+      <span class="pill">{{ hero_shop.counter }}</span>
+      <span class="pill">{{ hero_shop.location }}</span>
+      <span class="pill">{{ hero_shop.hours }}</span>
+    </div>
+    <a class="button primary" href="{{ url_for('shop_detail', shop_id=hero_shop.id) }}">Open Shop Page</a>
+  </article>
+  <article class="panel" data-aos="left" style="--aos-delay: 80ms;">
+    <span class="eyebrow">Customer Highlight</span>
+    <h2>{{ hero_shop.featured_review.author }}</h2>
+    <p class="rating">{{ render_stars(hero_shop.featured_review.stars) }}</p>
+    <p class="section-copy">{{ hero_shop.featured_review.text }}</p>
+    <a class="button secondary" href="{{ url_for('reviews') }}">Browse All Reviews</a>
+  </article>
+</section>
+
+<section id="shop-grid">
+  <div class="section-head" data-aos="up">
+    <div>
+      <h2>All Shops</h2>
+      <p class="meta">Featured shops with image, counter, location, and quick access to each shop detail page.</p>
+    </div>
+  </div>
+  <div class="grid shop-grid">
+    {% for shop in shops %}
+    <article class="shop-card" data-aos="up" style="--aos-delay: {{ loop.index0 * 80 }}ms;">
+      <img src="{{ hero_image }}" alt="{{ shop.name }}">
+      <div class="card-body">
+        <h3>{{ shop.name }}</h3>
+        <p class="meta">{{ shop.tagline }}</p>
+        <div class="card-meta">
+          <span class="pill">{{ shop.counter }}</span>
+          <span class="pill">{{ shop.location }}</span>
+        </div>
+        <div class="button-row card-actions">
+          <a class="button primary" href="{{ url_for('shop_detail', shop_id=shop.id) }}">View Details</a>
+          <a class="button secondary" href="#">Add to cart</a>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section id="featured-items">
+  <div class="section-head" data-aos="up">
+    <div>
+      <h2>Featured Items</h2>
+      <p class="meta">Popular menu items with images, names, prices, and quick access to details.</p>
+    </div>
+  </div>
+  <div class="grid items-grid">
+    {% for item in featured_items %}
+    <article class="shop-card" data-aos="up" style="--aos-delay: {{ loop.index0 * 80 }}ms;">
+      <img src="{{ hero_image }}" alt="{{ item.name }}">
+      <div class="card-body">
+        <h3>{{ item.name }}</h3>
+        <p class="meta">{{ item.price }}</p>
+        <div class="button-row card-actions">
+          <a class="button primary" href="{{ url_for('item_detail', item_id=item.id) }}">View item</a>
+          <a class="button secondary" href="#">Add to cart</a>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+<section style="background-image: url('food.png');">
+  <div class="section-head" data-aos="up">
+    <div>
+      <h2 >Customer Reviews</h2>
+      <p class="meta">Real feedback from our customers, showcasing their experiences and ratings.</p>
+    </div>
+  </div>
+</section>
+
+<section id="customer-reviews" >
+  <div class="section-head" data-aos="up">
+    <div style="padding-left: 5%;background-color: rgba(127, 125, 125, 0.7);">
+      <h2 style="color: white;font-size: 80px;">Customer Reviews</h2>
+      <p class="meta" style="color: white; font-size: 30px;">What our customers are saying about their experiences.</p>
+    </div>
+  </div>
+  <div class="grid customer-reviews-grid">
+    {% for review in reviews[:6] %}
+    <article class="review-card" data-aos="up" style="--aos-delay: {{ loop.index0 * 80 }}ms;">
+      <div class="card-body">
+        <h3>{{ review.author }}</h3>
+        <p class="rating">{{ render_stars(review.stars) }}</p>
+        <p class="section-copy">{{ review.text }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{%endblock%}

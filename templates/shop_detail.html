@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero" data-aos="up">
+  <div>
+    <span class="eyebrow">{{ shop.counter }}</span>
+    <h1>{{ shop.name }}</h1>
+    <p>{{ shop.about }}</p>
+    <div class="card-meta">
+      <span class="pill">{{ shop.location }}</span>
+      <span class="pill">{{ shop.hours }}</span>
+    </div>
+  </div>
+  <div class="hero-visual" data-aos="left" style="--aos-delay: 120ms;">
+    <img src="{{ hero_image }}" alt="Fresh food placeholder">
+  </div>
+</section>
+
+<section class="detail-layout">
+  <article class="detail-card" data-aos="right">
+    <span class="eyebrow">Map</span>
+    <h2>Visit this shop</h2>
+    <iframe src="{{ shop.map_embed }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </article>
+
+  <article class="detail-card" data-aos="left" style="--aos-delay: 100ms;">
+    <span class="eyebrow">Shop Info</span>
+    <h2>Opening and contact</h2>
+    <div class="mini-grid">
+      <div class="panel">
+        <h3>Open-Close</h3>
+        <p class="meta">{{ shop.hours }}</p>
+      </div>
+      <div class="panel">
+        <h3>Phone</h3>
+        <p class="meta">{{ shop.phone }}</p>
+      </div>
+      <div class="panel">
+        <h3>Email</h3>
+        <p class="meta">{{ shop.email }}</p>
+      </div>
+      <div class="panel">
+        <h3>Location</h3>
+        <p class="meta">{{ shop.location }}</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section>
+  <div class="section-head" data-aos="up">
+    <div>
+      <h2>Customer reviews</h2>
+      <p class="meta">Review highlights for {{ shop.name }}.</p>
+    </div>
+  </div>
+  <div class="grid reviews-grid">
+    {% for review in reviews %}
+    <article class="review-card" data-aos="up" style="--aos-delay: {{ loop.index0 * 70 }}ms;">
+      <div class="card-body">
+        <h3>{{ review.author }}</h3>
+        <p class="rating">{{ render_stars(review.stars) }}</p>
+        <p class="meta">{{ review.text }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

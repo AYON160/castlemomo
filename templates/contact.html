@@ -1,0 +1,70 @@
+{%extends 'base.html'%}
+{%block content%}
+<section class="detail-layout">
+  <article class="contact-panel" data-aos="right">
+    <span class="eyebrow">Contact Admin</span>
+    <h2>Share your review or support request</h2>
+    <p class="section-copy">
+      This template includes a clean contact area for customers to send feedback directly to the admin team,
+      along with a rating and written review.
+    </p>
+    <form>
+      <input type="text" placeholder="Your name">
+      <input type="email" placeholder="Your email">
+      <select>
+        <option selected disabled>Select stars</option>
+        <option>5 Stars</option>
+        <option>4 Stars</option>
+        <option>3 Stars</option>
+        <option>2 Stars</option>
+        <option>1 Star</option>
+      </select>
+      <textarea placeholder="Write your review or admin message"></textarea>
+      <button class="primary" type="button">Send Message</button>
+    </form>
+  </article>
+
+  <article class="contact-panel" data-aos="left" style="--aos-delay: 100ms;">
+    <span class="eyebrow">Admin Info</span>
+    <h2>Support desk</h2>
+    <div class="mini-grid">
+      <div class="detail-card">
+        <h3>Email</h3>
+        <p class="meta">admin@foodcompany.com</p>
+      </div>
+      <div class="detail-card">
+        <h3>Phone</h3>
+        <p class="meta">+91 1800 500 220</p>
+      </div>
+      <div class="detail-card">
+        <h3>Hours</h3>
+        <p class="meta">9:00 AM - 8:00 PM</p>
+      </div>
+      <div class="detail-card">
+        <h3>Response</h3>
+        <p class="meta">Usually within 2 working hours</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section>
+  <div class="section-head" data-aos="up">
+    <div>
+      <h2>Admin service reviews</h2>
+      <p class="meta">Sample customer feedback with star ratings for the admin support team.</p>
+    </div>
+  </div>
+  <div class="grid reviews-grid">
+    {% for item in contact_reviews %}
+    <article class="review-card" data-aos="up" style="--aos-delay: {{ loop.index0 * 80 }}ms;">
+      <div class="card-body">
+        <h3>{{ item.name }}</h3>
+        <p class="rating">{{ render_stars(item.stars) }}</p>
+        <p class="meta">{{ item.message }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{%endblock%}
