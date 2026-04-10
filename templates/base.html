@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Food Company Template</title>
+  <title>Castle Momo</title>
   <link rel="icon" href="{{ url_for('static', filename='food.png') }}" type="image/png">
   <style>
     :root {
@@ -526,7 +526,37 @@
     .hero.slide-in {
       animation: slideIn 0.8s ease-out;
     }
+    .footerparent {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      background: rgba(0, 0, 0, 0.438);
+      padding: 2rem;
+      margin-top: 3rem;
+    }
 
+    .footerparent h2, .footerparent h3, .footerparent h4 {
+      margin-bottom: 0.5rem;
+    }
+
+    .footerparent ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footerparent ul li:hover {
+      color: #fcbf49;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .brand, .value, .footerparent {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
     @keyframes slideIn {
       from {
         transform: translateX(-100%);
@@ -609,6 +639,7 @@
         max-width: none;
       }
     }
+    
   </style>
 </head>
 <body>
@@ -616,7 +647,7 @@
     <div class="container header-row">
       <a class="brand" href="{{ url_for('home') }}">
         <span class="brand-mark"><img src="{{ url_for('static', filename='food.png') }}" alt="Food company logo"></span>
-        <span>Food Company</span>
+        <span>CASTLE MOMO</span>
       </a>
       <div class="header-actions">
         <nav class="nav" aria-label="Primary navigation">
@@ -636,8 +667,31 @@
     {% block content %}{% endblock %}
   </main>
 
-  <footer class="site-footer">
-    <div class="container">Food Company template with built-in shop listings, reviews, and custom scroll animation.</div>
+  <footer>
+    <div class="footerparent">
+      <div>
+        <h2>&copy; Castle Momo Official Website</h2>
+        <h3>Released in 2025</h3>
+        <h3>Please do not use it in any harmful activity.</h3>
+        <h3>
+          If you find any bugs, feel free to notify us. <br />
+          Contact: +88012345678910 <br />
+          Email: ayon163135@gmail.com <br />
+          Report: <a href="/contact">Report Bugs</a>
+        </h3>
+        <h2>RATE US: ⭐⭐⭐⭐⭐</h2>
+      </div>
+      <div>
+        <ul>
+          <h2 style="margin-bottom: 1rem;">Follow us on:</h2>
+          <li><h4>FACEBOOK</h4></li>
+          <li><a href="https://www.youtube.com/results?search_query=castle+momo" target="_blank" rel="noopener noreferrer">YOUTUBE</a></li>
+          <li><h4>INSTAGRAM</h4></li>
+          <li><h4>WHATSAPP</h4></li>
+          <li><a href="https://github.com/AYON160/castlemomo" target="_blank" rel="noopener noreferrer">GITHUB</a></li>
+        </ul>
+      </div>
+    </div>
   </footer>
 
   <script>
